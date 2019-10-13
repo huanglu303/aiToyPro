@@ -25,3 +25,11 @@ RET = {
 
 # 联图二维码接口API(将 %s 内容生成二维码图片, 返回数据流)
 LT_URL = "http://qr.topscan.com/api.php?text=%s"
+
+# 需填入百度AI个人项目的相关信息
+APP_ID = ""
+API_KEY = ""
+SECRET_KEY = ""
+
+# 需填入图灵机器人TL_API_KEY
+TL_API_KEY = ""

@@ -7,6 +7,7 @@ from bson import ObjectId
 from pypinyin import lazy_pinyin, TONE2
 
 from config import RECOFILE_PATH, DB
+from config import APP_ID, API_KEY, SECRET_KEY, TL_API_KEY
 
 
 # 文字转语音
@@ -16,7 +17,6 @@ from utils.gen_nlp import my_nlp_content
 def t2s(remark=None, path=None, text=None):
     from aip import AipSpeech
 
-    APP_ID, API_KEY, SECRET_KEY = ('APP_ID', 'API_KEY', 'SECRET_KEY')
     t2s_client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
 
     if remark:
@@ -37,7 +37,6 @@ def t2s(remark=None, path=None, text=None):
 def a2t(file_path):
     from aip import AipSpeech
 
-    APP_ID, API_KEY, SECRET_KEY = ('APP_ID', 'API_KEY', 'SECRET_KEY')
     s2t_client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
 
     def get_content(file_p):
@@ -61,8 +60,9 @@ def get_data(content):
                 "text": content
             },
         },
+
         "userInfo": {
-            "apiKey": "apiKey",
+            "apiKey": TL_API_KEY,
             "userId": "001"
         }
     }

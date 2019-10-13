@@ -5,6 +5,79 @@
 通过音频交友, 进行交流分享与学习. 同时支持 APP 远程内容管理, 消息推送, 内容推送, 
 好友管理等基本功能
 
+### 下载安装
+- 下载源码:
+
+```
+git clone https://github.com/cpprto/aiToyPro.git
+```
+
+- 安装依赖
+
+```
+pip install -r requirements.txt
+```
+
+- 软件依赖
+    - MongoDB
+    - Redis
+    - HBuildxerX
+    - FFmpeg
+
+- 配置:
+
+```
+# config.py 为项目配置文件
+# 配置 DB
+DB = client_mongodb["AiToy"]
+RDB = Redis("127.0.0.1", 6379, db=4)
+
+# url 路径配置(资源爬取)
+URL = "https://www.ximalaya.com/revision/play/album?albumId=245037&pageNum=1&sort=1&pageSize=30"
+
+# Begin --> 目录配置
+COVER_PATH = "Cover"
+MUSIC_PATH = "Music"
+QRCODE_PATH = "Qrcode"
+RECOFILE_PATH = "RecoFile"
+# <-- End
+
+# 联图二维码接口API(将 %s 内容生成二维码图片, 返回数据流)
+LT_URL = "http://qr.topscan.com/api.php?text=%s"
+
+# 需填入百度AI个人项目的相关信息
+APP_ID = ""
+API_KEY = ""
+SECRET_KEY = ""
+
+# 需填入图灵机器人TL_API_KEY
+TL_API_KEY = ""
+
+# get_source.py
+start_mongodb_cmd 命令需要修改, 开启 MongoDB, 若 MongoDB 处于开启状态可注释该行
+
+# gen_nlp.py
+start_mongodb_cmd 命令需要修改, 开启 MongoDB, 若 MongoDB 处于开启状态可注释该行
+
+# create_qrcode.py
+start_mongodb_cmd 命令需要修改, 开启 MongoDB, 若 MongoDB 处于开启状态可注释该行
+
+
+```
+
+- 启动
+
+```
+# 如果你的依赖已经安装完成并且具备运行条件
+1.启动 MongoDB, Redis
+2.PyCharm 打开项目目录
+3.运行 utils 目录下的 get_source.py 获取音频资源并将信息入库
+4.运行 utils 目录下的 create_qrcode.py 生成二维码并将信息入库
+5.运行 app.py 启动 APP 后台服务器
+6.运行 ws_app.py 启动模拟硬件后台服务器
+7.HBuilderX 结合模拟器或真机即可测试所有功能
+```
+
 ### 项目应用技术以及技术实现功能
 
 - Flask (项目框架)
